@@ -1,0 +1,37 @@
+{
+  "model_file": "run3_finetuned.keras",
+  "img_size": 224,
+  "input": "RGB, resized to img_size, pixel values / 255 (normalization is inside the model)",
+  "classes": [
+    "Atelectasis",
+    "Cardiomegaly",
+    "Consolidation",
+    "Edema",
+    "Effusion",
+    "Emphysema",
+    "Fibrosis",
+    "Infiltration",
+    "Mass",
+    "No Finding",
+    "Nodule",
+    "Pleural_Thickening",
+    "Pneumonia",
+    "Pneumothorax"
+  ],
+  "thresholds": [
+    0.641028106212616,
+    0.8910202383995056,
+    0.6381796598434448,
+    0.8619221448898315,
+    0.685305118560791,
+    0.846587598323822,
+    0.7114217281341553,
+    0.5403822064399719,
+    0.6792734861373901,
+    0.3715570867061615,
+    0.6651914119720459,
+    0.5776214599609375,
+    0.6660842895507812,
+    0.6770658493041992
+  ]
+}

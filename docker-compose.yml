@@ -1,0 +1,29 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    ports: ["8000:8000"]
+    environment:
+      MODEL_PATH: models/run3_finetuned.keras
+      CONFIG_PATH: models/inference_config.json
+      PRIORITY_HIGH_RATIO: "1.25"
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-120b}
+      GROQ_TIMEOUT: ${GROQ_TIMEOUT:-20}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+  ui:
+    build:
+      context: .
+      dockerfile: ui/Dockerfile
+    ports: ["8501:8501"]
+    environment:
+      API_URL: http://api:8000
+    depends_on:
+      api:
+        condition: service_healthy
